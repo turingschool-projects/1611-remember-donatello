@@ -1,0 +1,11 @@
+<h1>remEMBER Donatello</h1>
+
+{{#each model as |reminder|}}
+  <div class="reminder-item">
+    <h3>{{reminder.title}}</h3>
+    <p>{{reminder.body}}</p>
+    <p>{{reminder.date}}</p>
+  </div>
+{{/each}}
+
+{{outlet}}
