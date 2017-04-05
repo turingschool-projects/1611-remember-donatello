@@ -7,9 +7,6 @@ export default Ember.Controller.extend({
       let reminderBody = this.get('reminderBody');
       let reminderDate = this.get('reminderDate');
     },
-    editReminder: function() {
-      this.set('isEditing', true)
-    }
   }
     
 });
