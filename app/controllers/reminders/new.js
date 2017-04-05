@@ -2,8 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
-    submitIdea(yo) {
-      console.log(yo)
+    addReminder(model) {
+      model.save().then(() => {
+        this.transitionToRoute('reminders');
+      })
     }
   }
 });

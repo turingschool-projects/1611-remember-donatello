@@ -1,11 +1,11 @@
-<div>
-  GO FUCK YOURSELF, LAPPY
-    <input value={{target.value}} type='text' placeholder='Title'/>
-    <input value={{target.value}} type='text' placeholder='Body'/>
-    <button {{action "submitIdea" model}}>Submit</button>
-</div>
 
-{{outlet}}
+{{input class="title" type='text' value=model.title}}
+{{input class="body" type='text' value=model.body}}
+{{input class="date" type="date" value=model.date}}
+<button {{action "addReminder" model}} class="save">Save</button>
+
+
+<!-- {{outlet}} -->
 
 
 <!-- value = model.title-->
