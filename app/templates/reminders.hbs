@@ -6,7 +6,12 @@
       <h3 class="reminder-item">{{reminder.title}}</h3>
     {{/link-to}}
   {{/each}}
+  {{#link-to 'reminders.new'}}
+    <button>Add Reminder</button>
+  {{/link-to}}
 </div>
+
+
 
 
 {{outlet}}
