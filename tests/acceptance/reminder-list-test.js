@@ -48,6 +48,24 @@ test('adding a new reminder', function(assert) {
     assert.equal(Ember.$('.reminder-item').length, 6, 'see all reminders');
     assert.equal(Ember.$('.reminder-item:last').text().trim(), 'boots');
     server.shutdown();
+  });
+});
 
+test('adding a new reminder', function(assert) {
+  server.createList('reminder', 5)
+  
+  visit('/reminders/new');
+  fillIn('.title', 'boots');
+  fillIn('.body', 'pants');
+  fillIn('.date', '2017-01-01');
+  click('.save');
+  
+  click('.reminder-item:last');
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders/6');
+    assert.equal(Ember.$('.reminder-item:last').text().trim(), Ember.$('.reminder-title').text().trim());
+    assert.equal(Ember.$('.reminder-body').text().trim(), 'pants');
+    assert.equal(Ember.$('.reminder-date').text().trim(), '2017-01-01');
+    server.shutdown();
   });
 });
