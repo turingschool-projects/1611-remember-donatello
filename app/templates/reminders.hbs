@@ -1,17 +1,19 @@
 <h1>remEMBER Donatello</h1>
 
 <div>
-  {{#each model as |reminder|}}
-    {{#link-to 'reminders.reminder' reminder}}
-      <h3 class="reminder-item">{{reminder.title}}</h3>
-    {{/link-to}}
-  {{/each}}
+  {{#if model}}
+    {{#each model as |reminder|}}
+      {{#link-to 'reminders.reminder' reminder}}
+        <h3 class="reminder-item">{{reminder.title}}</h3>
+      {{/link-to}}
+    {{/each}}
+  {{else}}
+    <h2 class="add-reminder">Add a new reminder</h2>
+  {{/if}}
   {{#link-to 'reminders.new'}}
-    <button>Add Reminder</button>
+    <button class="add-btn">Add Reminder</button>
   {{/link-to}}
 </div>
-
-
 
 
 {{outlet}}
