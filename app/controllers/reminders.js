@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
       let reminderTitle = this.get('reminderTitle');
       let reminderBody = this.get('reminderBody');
       let reminderDate = this.get('reminderDate');
-    }
+    },
   }
+    
 });

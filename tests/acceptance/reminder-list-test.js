@@ -87,3 +87,23 @@ test('visit root and click add reminder button should take user to form', functi
     assert.equal(currentURL(), '/reminders/new');
   });
 });
+
+test('submit idea, click edit, and be able to change information and save changes to list', function(assert) {
+  visit('/');
+  click('.add-btn');
+  fillIn('.title', 'boots');
+  fillIn('.body', 'pants');
+  fillIn('.date', '2017-01-01');
+  click('.save');
+  
+  click('.reminder-item:first');
+  click('.edit-reminder');
+  fillIn('.title', 'boots!!!');
+  fillIn('.body', 'pants!!!');
+  click('.save');
+  click('.reminder-item:first');
+  andThen(function() {
+    assert.equal(Ember.$('.reminder-item:first').text().trim(), Ember.$('.reminder-title').text().trim());
+    assert.equal(Ember.$('.reminder-body').text().trim(), 'pants!!!');
+  });
+});
