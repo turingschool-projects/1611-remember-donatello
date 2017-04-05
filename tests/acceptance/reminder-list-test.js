@@ -36,13 +36,13 @@ test('clicking on an individual item', function(assert) {
 
 test('adding a new reminder', function(assert) {
   server.createList('reminder', 5)
-  
+
   visit('/reminders/new');
   fillIn('.title', 'boots');
   fillIn('.body', 'pants');
   fillIn('.date', '2017-01-01');
   click('.save');
-  
+
   andThen(function() {
     assert.equal(currentURL(), '/reminders');
     assert.equal(Ember.$('.reminder-item').length, 6, 'see all reminders');
@@ -53,13 +53,13 @@ test('adding a new reminder', function(assert) {
 
 test('adding a new reminder', function(assert) {
   server.createList('reminder', 5)
-  
+
   visit('/reminders/new');
   fillIn('.title', 'boots');
   fillIn('.body', 'pants');
   fillIn('.date', '2017-01-01');
   click('.save');
-  
+
   click('.reminder-item:last');
   andThen(function() {
     assert.equal(currentURL(), '/reminders/6');
@@ -67,5 +67,23 @@ test('adding a new reminder', function(assert) {
     assert.equal(Ember.$('.reminder-body').text().trim(), 'pants');
     assert.equal(Ember.$('.reminder-date').text().trim(), '2017-01-01');
     server.shutdown();
+  });
+});
+
+test('instruction if no reminders present', function(assert) {
+  visit('/');
+
+  andThen(function() {
+    assert.equal(Ember.$('.add-reminder').length, 1, 'see add reminder header');
+    assert.equal(Ember.$('.add-btn').length, 1, 'see add reminder button');
+  });
+});
+
+test('visit root and click add reminder button should take user to form', function(assert) {
+  visit('/');
+  click('.add-btn');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders/new');
   });
 });
