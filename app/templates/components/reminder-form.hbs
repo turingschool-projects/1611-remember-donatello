@@ -3,4 +3,5 @@
   <p class="reminder-body">{{reminder.body}}</p>
   <p class="reminder-date">{{reminder.date}}</p>
   {{#link-to 'reminders.reminder.edit'}}<button class="edit-reminder">Edit Reminder</button>{{/link-to}}
+  {{#link-to 'reminders'}}<button {{action "deleteReminder" reminder}} class="delete-btn">Delete</button>{{/link-to}}
 </div>
