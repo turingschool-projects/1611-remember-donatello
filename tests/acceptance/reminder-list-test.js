@@ -95,7 +95,7 @@ test('submit idea, click edit, and be able to change information and save change
   fillIn('.body', 'pants');
   fillIn('.date', '2017-01-01');
   click('.save');
-  
+
   click('.reminder-item:first');
   click('.edit-reminder');
   fillIn('.title', 'boots!!!');
@@ -105,5 +105,40 @@ test('submit idea, click edit, and be able to change information and save change
   andThen(function() {
     assert.equal(Ember.$('.reminder-item:first').text().trim(), Ember.$('.reminder-title').text().trim());
     assert.equal(Ember.$('.reminder-body').text().trim(), 'pants!!!');
+  });
+});
+
+test('removes idea from reminder list', function(assert) {
+  visit('/')
+  click('.add-btn');
+  fillIn('.title', 'boots');
+  fillIn('.body', 'pants');
+  fillIn('.date', '2017-01-01');
+  click('.save');
+
+  click('.reminder-item:first');
+  click('.delete-btn');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders');
+    assert.equal(Ember.$('.reminder-item').length, 0, 'see no reminders');
+  });
+});
+
+test('removes idea from reminder list', function(assert) {
+  visit('/')
+  click('.add-btn');
+  fillIn('.title', 'boots');
+  fillIn('.body', 'pants');
+  fillIn('.date', '2017-01-01');
+  click('.save');
+
+  click('.reminder-item:first');
+  click('.edit-reminder');
+  click('.delete-btn');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders');
+    assert.equal(Ember.$('.reminder-item').length, 0, 'see no reminders');
   });
 });
